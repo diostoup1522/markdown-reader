@@ -23,6 +23,7 @@ export type ActionId =
   | "table.insert"
   | "view.toggleDarkMode"
   | "view.toggleAIPanel"
+  | "view.openBrowserPreview"
   | "view.fullEditor"
   | "view.balancedSplit"
   | "view.fullPreview";
@@ -82,7 +83,9 @@ export const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
     id: "edit.redo",
     label: "Redo",
     scope: "global",
-    bindings: [isMac ? primary("z", { shift: true }) : { key: "y", ctrl: true }],
+    bindings: isMac
+      ? [primary("z", { shift: true })]
+      : [{ key: "y", ctrl: true }, primary("z", { shift: true })],
   },
   { id: "edit.search", label: "Search", scope: "editor", bindings: [primary("f")] },
   {
@@ -108,6 +111,12 @@ export const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
     label: "Toggle AI Agent Panel",
     scope: "global",
     bindings: [primary("a", { shift: true })],
+  },
+  {
+    id: "view.openBrowserPreview",
+    label: "Open Preview in Browser",
+    scope: "global",
+    bindings: [primaryAlt("b")],
   },
   {
     id: "view.fullEditor",
